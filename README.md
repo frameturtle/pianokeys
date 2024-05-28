@@ -1,2 +1,5 @@
 # pianokeys
-A web application to aid in memorization of notes.
+
+THINGS I USED:
+
+"build a piano with javascript - tutorial" by Web Dev Simplified
