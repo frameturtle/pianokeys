@@ -9,7 +9,15 @@ function playNote(key) {
     noteAudio.currentTime = 0
     noteAudio.play()
     key.classList.add('active')
-    noteAudio.addEventListener('ended', () => {
-        key.classList.remove('active')
-    })
-}
+    setInterval(function() {
+    });
+    noteAudio.addEventListener('timeupdate', function() {
+        var t = noteAudio.currentTime;
+        if (t > 0.5) {
+            noteAudio.pause();
+            key.classList.remove('active')
+            noteAudio.addEventListener('ended', () => {
+                key.classList.remove('active')
+            })
+        }
+})}
