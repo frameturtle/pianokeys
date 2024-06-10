@@ -1,23 +1,37 @@
-const CLEFS = ["BASS","TREBLE"]
-const NOTES = ["C4","C-4","D4","D-4","E4","F4","F-4","G4","G-4","A4",
-"A-4","B4","C5","C-5","D5","D-5","E5","F5","F-5","G5","G-5","A5","A-5"]
-
+const CLEFS = ["TREBLE"]
+const NAMES = ["C4","D4","E4","F4","G4","A4",
+            "B4","C5","D5","E5","F5","G5","A5"]
+const IMAGES = [
+    "assets/cardImages/C4trebleClef.svg",
+    "assets/cardImages/D4trebleClef.svg",
+    "assets/cardImages/E4trebleClef.svg",
+    "assets/cardImages/F4trebleClef.svg",
+    "assets/cardImages/G4trebleClef.svg",
+    "assets/cardImages/A4trebleClef.svg",
+    "assets/cardImages/B4trebleClef.svg",
+    "assets/cardImages/C5trebleClef.svg",
+    "assets/cardImages/D5trebleClef.svg",
+    "assets/cardImages/E5trebleClef.svg",
+    "assets/cardImages/F5trebleClef.svg",
+    "assets/cardImages/G5trebleClef.svg",
+    "assets/cardImages/A5trebleClef.svg"
+]
 
 export default class Deck {
     constructor(cards = freshDeck()) {
-        this.cards = cards
+        this.cards = cards;
     }
 
     get numberOfCards() {
-        return this.cards.length
+        return this.cards.length;
     }
 
     shuffle() {
         for(let i = this.numberOfCards - 1; i >0; i--) {
-            const newIndex = Math.floor(Math.random()*(i+1))
-            const oldValue = this.cards[newIndex]
-            this.cards[newIndex] = this.cards[i]
-            this.cards[i] = oldValue
+            const newIndex = Math.floor(Math.random()*(i+1));
+            const oldValue = this.cards[newIndex];
+            this.cards[newIndex] = this.cards[i];
+            this.cards[i] = oldValue;
         }
     }
 }
@@ -25,21 +39,30 @@ export default class Deck {
 
 class Card {
     constructor(clef, note) {
-        this.clef = clef
-        this.note = note
+        this.clef = clef;
+        this.note = note;
     } 
 }
 
-class Image {
+class Note {
     constructor(img, name) {
-
+        this.img = img;
+        this.name = name;
     }
+}
+
+function makeNotes() {
+    const notes = [];
+    for (let index = 0; index < IMAGES.length; index++) {
+        notes[index] = new Note(IMAGES[index], NAMES[index])
+    }
+    return notes;
 }
 
 function freshDeck() {
     return CLEFS.flatMap(clef => {
-        return NOTES.map(note => {
-            return new Card(clef, note)
+        return makeNotes().map(note => {
+            return new Card(clef, note);
         })
     })
 }
