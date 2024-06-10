@@ -19,6 +19,18 @@ h1, h2, p {
     margin-left: 3%;
 }
 
+h1 {
+    font-size: 5em;
+}
+
+h2 {
+    font-size: 3em;
+}
+
+p {
+    font-size: 2em;
+}
+
 
 
 .main {
@@ -27,29 +39,32 @@ h1, h2, p {
     flex-direction: column;
     flex-basis: 70vw;
     flex-basis: 60vh;
-    margin: 5%;
-    padding-right: 10%;
+    margin: 2%;
+    /* padding-right: 10%; */
 }
 
-#staff {
-    max-width: 25vw;
-    max-height: 25vh;
-    object-fit: contain;
+.heading {
+    align-items: center;
 }
 
 .piano {
     display: flex;
+    width: 90%;
+    cursor: pointer;
 }
 
+
 .key {
-    height: calc(var(--width) * 4);
-    width: var(--width);
+    height: calc(var(--width) * 8);
+    width: calc(var(--width)* 2);
 }
+
+
 
 .white {
     --width: 37.5px;
     background-color: white;
-    border: 1px solid #333;
+    outline: 3px solid #333;
 }
 
 .white.active {
@@ -58,10 +73,10 @@ h1, h2, p {
 
 .black {
     --width: 22.5px;
-    height: 90px;
+    height: 180px;
     background-color: #1c1c1c;
-    margin-right: calc(var(--width)/-2);
-    margin-left: calc(var(--width)/-2);
+    margin-right: calc(var(--width)/-1);
+    margin-left: calc(var(--width)/-1);
     z-index: 2;
 }
 
