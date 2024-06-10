@@ -26,6 +26,10 @@ export default class Deck {
         return this.cards.length;
     }
 
+    pop() {
+        return this.cards.shift();
+    }
+
     shuffle() {
         for(let i = this.numberOfCards - 1; i >0; i--) {
             const newIndex = Math.floor(Math.random()*(i+1));
@@ -36,12 +40,19 @@ export default class Deck {
     }
 }
 
-
 class Card {
     constructor(clef, note) {
         this.clef = clef;
         this.note = note;
     } 
+
+    getHTML() {
+        const cardImg = document.createElement('img');
+        cardImg.src = this.note.img;
+        cardImg.alt = this.note.name;
+        cardImg.id = "thing";
+        return cardImg;
+    }
 }
 
 class Note {

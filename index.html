@@ -5,7 +5,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="styles/main.css">
-        <script src="scripts/keys.js" defer></script>
+        <script src="scripts/keys.js" type="module"></script>
         <script src="scripts/script.js" type="module"></script>
     </head>
     <body>
@@ -16,200 +16,204 @@
                 <p>Look at the note and press the coresponding key on the piano. Middle C is highlighted in blue.</p>
             </div>
             <div class="card">
-                <img src="assets\cardImages\A4trebleClef.svg" alt="A4">
+                <img src="assets\trebleClef.svg" alt="treble clef" id="base">
             </div>
+            <div id="beginButton">
+                <h2 class="button" id="begin">Begin</h2>
+            </div>          
         </div>  
         <div class="piano">
             <!-- 1 -->
-            <div data-note="A0" class="key white"></div>
-            <div data-note="A#0" class="key black"></div>
-            <div data-note="B0" class="key white"></div>
-            <div data-note="C1" class="key white"></div>
-            <div data-note="C#1" class="key black"></div>
-            <div data-note="D1" class="key white"></div>
-            <div data-note="D#1" class="key black"></div>
-            <div data-note="E1" class="key white"></div>
-            <div data-note="F1" class="key white"></div>
-            <div data-note="F#1" class="key black"></div>
-            <div data-note="G1" class="key white"></div>
-            <div data-note="G#1" class="key black"></div>
-            <div data-note="A1" class="key white"></div>
-            <div data-note="A#1" class="key black"></div>
-            <div data-note="B1" class="key white"></div>
+            <div data-sound="A0" class="key white"></div>
+            <div data-sound="A#0" class="key black"></div>
+            <div data-sound="B0" class="key white"></div>
+            <div data-sound="C1" class="key white"></div>
+            <div data-sound="C#1" class="key black"></div>
+            <div data-sound="D1" class="key white"></div>
+            <div data-sound="D#1" class="key black"></div>
+            <div data-sound="E1" class="key white"></div>
+            <div data-sound="F1" class="key white"></div>
+            <div data-sound="F#1" class="key black"></div>
+            <div data-sound="G1" class="key white"></div>
+            <div data-sound="G#1" class="key black"></div>
+            <div data-sound="A1" class="key white"></div>
+            <div data-sound="A#1" class="key black"></div>
+            <div data-sound="B1" class="key white"></div>
             <!-- 2 -->
-            <div data-note="C2" class="key white"></div>
-            <div data-note="C#2" class="key black"></div>
-            <div data-note="D2" class="key white"></div>
-            <div data-note="D#2" class="key black"></div>
-            <div data-note="E2" class="key white"></div>
-            <div data-note="F2" class="key white"></div>
-            <div data-note="F#2" class="key black"></div>
-            <div data-note="G2" class="key white"></div>
-            <div data-note="G#2" class="key black"></div>
-            <div data-note="A2" class="key white"></div>
-            <div data-note="A#2" class="key black"></div>
-            <div data-note="B2" class="key white"></div>
+            <div data-sound="C2" class="key white"></div>
+            <div data-sound="C#2" class="key black"></div>
+            <div data-sound="D2" class="key white"></div>
+            <div data-sound="D#2" class="key black"></div>
+            <div data-sound="E2" class="key white"></div>
+            <div data-sound="F2" class="key white"></div>
+            <div data-sound="F#2" class="key black"></div>
+            <div data-sound="G2" class="key white"></div>
+            <div data-sound="G#2" class="key black"></div>
+            <div data-sound="A2" class="key white"></div>
+            <div data-sound="A#2" class="key black"></div>
+            <div data-sound="B2" class="key white"></div>
             <!-- 3 -->
-            <div data-note="C3" class="key white"></div>
-            <div data-note="C#3" class="key black"></div>
-            <div data-note="D3" class="key white"></div>
-            <div data-note="D#3" class="key black"></div>
-            <div data-note="E3" class="key white"></div>
-            <div data-note="F3" class="key white"></div>
-            <div data-note="F#3" class="key black"></div>
-            <div data-note="G3" class="key white"></div>
-            <div data-note="G#3" class="key black"></div>
-            <div data-note="A3" class="key white"></div>
-            <div data-note="A#3" class="key black"></div>
-            <div data-note="B3" class="key white"></div>
+            <div data-sound="C3" class="key white"></div>
+            <div data-sound="C#3" class="key black"></div>
+            <div data-sound="D3" class="key white"></div>
+            <div data-sound="D#3" class="key black"></div>
+            <div data-sound="E3" class="key white"></div>
+            <div data-sound="F3" class="key white"></div>
+            <div data-sound="F#3" class="key black"></div>
+            <div data-sound="G3" class="key white"></div>
+            <div data-sound="G#3" class="key black"></div>
+            <div data-sound="A3" class="key white"></div>
+            <div data-sound="A#3" class="key black"></div>
+            <div data-sound="B3" class="key white"></div>
             <!-- 4 -->
-            <div data-note="C4" class="key white" id="middle"></div>
-            <div data-note="C#4" class="key black"></div>
-            <div data-note="D4" class="key white"></div>
-            <div data-note="D#4" class="key black"></div>
-            <div data-note="E4" class="key white"></div>
-            <div data-note="F4" class="key white"></div>
-            <div data-note="F#4" class="key black"></div>
-            <div data-note="G4" class="key white"></div>
-            <div data-note="G#4" class="key black"></div>
-            <div data-note="A4" class="key white"></div>
-            <div data-note="A#4" class="key black"></div>
-            <div data-note="B4" class="key white"></div>
+            <div data-sound="C4" class="key white" id="middle"></div>
+            <div data-sound="C#4" class="key black"></div>
+            <div data-sound="D4" class="key white"></div>
+            <div data-sound="D#4" class="key black"></div>
+            <div data-sound="E4" class="key white"></div>
+            <div data-sound="F4" class="key white"></div>
+            <div data-sound="F#4" class="key black"></div>
+            <div data-sound="G4" class="key white"></div>
+            <div data-sound="G#4" class="key black"></div>
+            <div data-sound="A4" class="key white"></div>
+            <div data-sound="A#4" class="key black"></div>
+            <div data-sound="B4" class="key white"></div>
             <!-- 5 -->
-            <div data-note="C5" class="key white"></div>
-            <div data-note="C#5" class="key black"></div>
-            <div data-note="D5" class="key white"></div>
-            <div data-note="D#5" class="key black"></div>
-            <div data-note="E5" class="key white"></div>
-            <div data-note="F5" class="key white"></div>
-            <div data-note="F#5" class="key black"></div>
-            <div data-note="G5" class="key white"></div>
-            <div data-note="G#5" class="key black"></div>
-            <div data-note="A5" class="key white"></div>
-            <div data-note="A#5" class="key black"></div>
-            <div data-note="B5" class="key white"></div>
+            <div data-sound="C5" class="key white"></div>
+            <div data-sound="C#5" class="key black"></div>
+            <div data-sound="D5" class="key white"></div>
+            <div data-sound="D#5" class="key black"></div>
+            <div data-sound="E5" class="key white"></div>
+            <div data-sound="F5" class="key white"></div>
+            <div data-sound="F#5" class="key black"></div>
+            <div data-sound="G5" class="key white"></div>
+            <div data-sound="G#5" class="key black"></div>
+            <div data-sound="A5" class="key white"></div>
+            <div data-sound="A#5" class="key black"></div>
+            <div data-sound="B5" class="key white"></div>
             <!-- 6 -->
-            <div data-note="C6" class="key white"></div>
-            <div data-note="C#6" class="key black"></div>
-            <div data-note="D6" class="key white"></div>
-            <div data-note="D#6" class="key black"></div>
-            <div data-note="E6" class="key white"></div>
-            <div data-note="F6" class="key white"></div>
-            <div data-note="F#6" class="key black"></div>
-            <div data-note="G6" class="key white"></div>
-            <div data-note="G#6" class="key black"></div>
-            <div data-note="A6" class="key white"></div>
-            <div data-note="A#6" class="key black"></div>
-            <div data-note="B6" class="key white"></div>
+            <div data-sound="C6" class="key white"></div>
+            <div data-sound="C#6" class="key black"></div>
+            <div data-sound="D6" class="key white"></div>
+            <div data-sound="D#6" class="key black"></div>
+            <div data-sound="E6" class="key white"></div>
+            <div data-sound="F6" class="key white"></div>
+            <div data-sound="F#6" class="key black"></div>
+            <div data-sound="G6" class="key white"></div>
+            <div data-sound="G#6" class="key black"></div>
+            <div data-sound="A6" class="key white"></div>
+            <div data-sound="A#6" class="key black"></div>
+            <div data-sound="B6" class="key white"></div>
             <!-- 7 -->
-            <div data-note="C7" class="key white"></div>
-            <div data-note="C#7" class="key black"></div>
-            <div data-note="D7" class="key white"></div>
-            <div data-note="D#7" class="key black"></div>
-            <div data-note="E7" class="key white"></div>
-            <div data-note="F7" class="key white"></div>
-            <div data-note="F#7" class="key black"></div>
-            <div data-note="G7" class="key white"></div>
-            <div data-note="G#7" class="key black"></div>
-            <div data-note="A7" class="key white"></div>
-            <div data-note="A#7" class="key black"></div>
-            <div data-note="B7" class="key white"></div>
-            <div data-note="C8" class="key white"></div>
+            <div data-sound="C7" class="key white"></div>
+            <div data-sound="C#7" class="key black"></div>
+            <div data-sound="D7" class="key white"></div>
+            <div data-sound="D#7" class="key black"></div>
+            <div data-sound="E7" class="key white"></div>
+            <div data-sound="F7" class="key white"></div>
+            <div data-sound="F#7" class="key black"></div>
+            <div data-sound="G7" class="key white"></div>
+            <div data-sound="G#7" class="key black"></div>
+            <div data-sound="A7" class="key white"></div>
+            <div data-sound="A#7" class="key black"></div>
+            <div data-sound="B7" class="key white"></div>
+            <div data-sound="C8" class="key white"></div>
+        
+            <!-- 1 -->
+            <audio id="A0" src="assets\pianoSounds\A0.mp3"></audio>
+            <audio id="A#0" src="assets\pianoSounds\A-0.mp3"></audio>
+            <audio id="B0" src="assets\pianoSounds\B0.mp3"></audio>
+            <audio id="C1" src="assets\pianoSounds\C1.mp3"></audio>
+            <audio id="C#1" src="assets\pianoSounds\C-1.mp3"></audio>
+            <audio id="D1" src="assets\pianoSounds\D1.mp3"></audio>
+            <audio id="D#1" src="assets\pianoSounds\D-1.mp3"></audio>
+            <audio id="E1" src="assets\pianoSounds\E1.mp3"></audio>
+            <audio id="F1" src="assets\pianoSounds\F1.mp3"></audio>
+            <audio id="F#1" src="assets\pianoSounds\F-1.mp3"></audio>
+            <audio id="G1" src="assets\pianoSounds\G1.mp3"></audio>
+            <audio id="G#1" src="assets\pianoSounds\G-1.mp3"></audio>
+            <audio id="A1" src="assets\pianoSounds\A1.mp3"></audio>
+            <audio id="A#1" src="assets\pianoSounds\A-1.mp3"></audio>
+            <audio id="B1" src="assets\pianoSounds\B1.mp3"></audio>
+            <!-- 2 -->
+            <audio id="C2" src="assets\pianoSounds\C2.mp3"></audio>
+            <audio id="C#2" src="assets\pianoSounds\C-2.mp3"></audio>
+            <audio id="D2" src="assets\pianoSounds\D2.mp3"></audio>
+            <audio id="D#2" src="assets\pianoSounds\D-2.mp3"></audio>
+            <audio id="E2" src="assets\pianoSounds\E2.mp3"></audio>
+            <audio id="F2" src="assets\pianoSounds\F2.mp3"></audio>
+            <audio id="F#2" src="assets\pianoSounds\F-2.mp3"></audio>
+            <audio id="G2" src="assets\pianoSounds\G2.mp3"></audio>
+            <audio id="G#2" src="assets\pianoSounds\G-2.mp3"></audio>
+            <audio id="A2" src="assets\pianoSounds\A2.mp3"></audio>
+            <audio id="A#2" src="assets\pianoSounds\A-2.mp3"></audio>
+            <audio id="B2" src="assets\pianoSounds\B2.mp3"></audio>
+            <!-- 3 -->
+            <audio id="C3" src="assets\pianoSounds\C3.mp3"></audio>
+            <audio id="C#3" src="assets\pianoSounds\C-3.mp3"></audio>
+            <audio id="D3" src="assets\pianoSounds\D3.mp3"></audio>
+            <audio id="D#3" src="assets\pianoSounds\D-3.mp3"></audio>
+            <audio id="E3" src="assets\pianoSounds\E3.mp3"></audio>
+            <audio id="F3" src="assets\pianoSounds\F3.mp3"></audio>
+            <audio id="F#3" src="assets\pianoSounds\F-3.mp3"></audio>
+            <audio id="G3" src="assets\pianoSounds\G3.mp3"></audio>
+            <audio id="G#3" src="assets\pianoSounds\G-3.mp3"></audio>
+            <audio id="A3" src="assets\pianoSounds\A3.mp3"></audio>
+            <audio id="A#3" src="assets\pianoSounds\A-3.mp3"></audio>
+            <audio id="B3" src="assets\pianoSounds\B3.mp3"></audio>
+            <!-- 4 -->
+            <audio id="C4" src="assets\pianoSounds\C4.mp3"></audio>
+            <audio id="C#4" src="assets\pianoSounds\C-4.mp3"></audio>
+            <audio id="D4" src="assets\pianoSounds\D4.mp3"></audio>
+            <audio id="D#4" src="assets\pianoSounds\D-4.mp3"></audio>
+            <audio id="E4" src="assets\pianoSounds\E4.mp3"></audio>
+            <audio id="F4" src="assets\pianoSounds\F4.mp3"></audio>
+            <audio id="F#4" src="assets\pianoSounds\F-4.mp3"></audio>
+            <audio id="G4" src="assets\pianoSounds\G4.mp3"></audio>
+            <audio id="G#4" src="assets\pianoSounds\G-4.mp3"></audio>
+            <audio id="A4" src="assets\pianoSounds\A4.mp3"></audio>
+            <audio id="A#4" src="assets\pianoSounds\A-4.mp3"></audio>
+            <audio id="B4" src="assets\pianoSounds\B4.mp3"></audio>
+            <!-- 5 -->
+            <audio id="C5" src="assets\pianoSounds\C5.mp3"></audio>
+            <audio id="C#5" src="assets\pianoSounds\C-5.mp3"></audio>
+            <audio id="D5" src="assets\pianoSounds\D5.mp3"></audio>
+            <audio id="D#5" src="assets\pianoSounds\D-5.mp3"></audio>
+            <audio id="E5" src="assets\pianoSounds\E5.mp3"></audio>
+            <audio id="F5" src="assets\pianoSounds\F5.mp3"></audio>
+            <audio id="F#5" src="assets\pianoSounds\F-5.mp3"></audio>
+            <audio id="G5" src="assets\pianoSounds\G5.mp3"></audio>
+            <audio id="G#5" src="assets\pianoSounds\G-5.mp3"></audio>
+            <audio id="A5" src="assets\pianoSounds\A5.mp3"></audio>
+            <audio id="A#5" src="assets\pianoSounds\A-5.mp3"></audio>
+            <audio id="B5" src="assets\pianoSounds\B5.mp3"></audio>
+            <!-- 6 -->
+            <audio id="C6" src="assets\pianoSounds\C6.mp3"></audio>
+            <audio id="C#6" src="assets\pianoSounds\C-6.mp3"></audio>
+            <audio id="D6" src="assets\pianoSounds\D6.mp3"></audio>
+            <audio id="D#6" src="assets\pianoSounds\D-6.mp3"></audio>
+            <audio id="E6" src="assets\pianoSounds\E6.mp3"></audio>
+            <audio id="F6" src="assets\pianoSounds\F6.mp3"></audio>
+            <audio id="F#6" src="assets\pianoSounds\F-6.mp3"></audio>
+            <audio id="G6" src="assets\pianoSounds\G6.mp3"></audio>
+            <audio id="G#6" src="assets\pianoSounds\G-6.mp3"></audio>
+            <audio id="A6" src="assets\pianoSounds\A6.mp3"></audio>
+            <audio id="A#6" src="assets\pianoSounds\A-6.mp3"></audio>
+            <audio id="B6" src="assets\pianoSounds\B6.mp3"></audio>
+            <!-- 7 -->
+            <audio id="C7" src="assets\pianoSounds\C7.mp3"></audio>
+            <audio id="C#7" src="assets\pianoSounds\C-7.mp3"></audio>
+            <audio id="D7" src="assets\pianoSounds\D7.mp3"></audio>
+            <audio id="D#7" src="assets\pianoSounds\D-7.mp3"></audio>
+            <audio id="E7" src="assets\pianoSounds\E7.mp3"></audio>
+            <audio id="F7" src="assets\pianoSounds\F7.mp3"></audio>
+            <audio id="F#7" src="assets\pianoSounds\F-7.mp3"></audio>
+            <audio id="G7" src="assets\pianoSounds\G7.mp3"></audio>
+            <audio id="G#7" src="assets\pianoSounds\G-7.mp3"></audio>
+            <audio id="A7" src="assets\pianoSounds\A7.mp3"></audio>
+            <audio id="A#7" src="assets\pianoSounds\A-7.mp3"></audio>
+            <audio id="B7" src="assets\pianoSounds\B7.mp3"></audio>
+            <audio id="C8" src="assets\pianoSounds\C8.mp3"></audio>
         </div>
-        <!-- 1 -->
-        <audio id="A0" src="assets\pianoSounds\A0.mp3"></audio>
-        <audio id="A#0" src="assets\pianoSounds\A-0.mp3"></audio>
-        <audio id="B0" src="assets\pianoSounds\B0.mp3"></audio>
-        <audio id="C1" src="assets\pianoSounds\C1.mp3"></audio>
-        <audio id="C#1" src="assets\pianoSounds\C-1.mp3"></audio>
-        <audio id="D1" src="assets\pianoSounds\D1.mp3"></audio>
-        <audio id="D#1" src="assets\pianoSounds\D-1.mp3"></audio>
-        <audio id="E1" src="assets\pianoSounds\E1.mp3"></audio>
-        <audio id="F1" src="assets\pianoSounds\F1.mp3"></audio>
-        <audio id="F#1" src="assets\pianoSounds\F-1.mp3"></audio>
-        <audio id="G1" src="assets\pianoSounds\G1.mp3"></audio>
-        <audio id="G#1" src="assets\pianoSounds\G-1.mp3"></audio>
-        <audio id="A1" src="assets\pianoSounds\A1.mp3"></audio>
-        <audio id="A#1" src="assets\pianoSounds\A-1.mp3"></audio>
-        <audio id="B1" src="assets\pianoSounds\B1.mp3"></audio>
-        <!-- 2 -->
-        <audio id="C2" src="assets\pianoSounds\C2.mp3"></audio>
-        <audio id="C#2" src="assets\pianoSounds\C-2.mp3"></audio>
-        <audio id="D2" src="assets\pianoSounds\D2.mp3"></audio>
-        <audio id="D#2" src="assets\pianoSounds\D-2.mp3"></audio>
-        <audio id="E2" src="assets\pianoSounds\E2.mp3"></audio>
-        <audio id="F2" src="assets\pianoSounds\F2.mp3"></audio>
-        <audio id="F#2" src="assets\pianoSounds\F-2.mp3"></audio>
-        <audio id="G2" src="assets\pianoSounds\G2.mp3"></audio>
-        <audio id="G#2" src="assets\pianoSounds\G-2.mp3"></audio>
-        <audio id="A2" src="assets\pianoSounds\A2.mp3"></audio>
-        <audio id="A#2" src="assets\pianoSounds\A-2.mp3"></audio>
-        <audio id="B2" src="assets\pianoSounds\B2.mp3"></audio>
-        <!-- 3 -->
-        <audio id="C3" src="assets\pianoSounds\C3.mp3"></audio>
-        <audio id="C#3" src="assets\pianoSounds\C-3.mp3"></audio>
-        <audio id="D3" src="assets\pianoSounds\D3.mp3"></audio>
-        <audio id="D#3" src="assets\pianoSounds\D-3.mp3"></audio>
-        <audio id="E3" src="assets\pianoSounds\E3.mp3"></audio>
-        <audio id="F3" src="assets\pianoSounds\F3.mp3"></audio>
-        <audio id="F#3" src="assets\pianoSounds\F-3.mp3"></audio>
-        <audio id="G3" src="assets\pianoSounds\G3.mp3"></audio>
-        <audio id="G#3" src="assets\pianoSounds\G-3.mp3"></audio>
-        <audio id="A3" src="assets\pianoSounds\A3.mp3"></audio>
-        <audio id="A#3" src="assets\pianoSounds\A-3.mp3"></audio>
-        <audio id="B3" src="assets\pianoSounds\B3.mp3"></audio>
-        <!-- 4 -->
-        <audio id="C4" src="assets\pianoSounds\C4.mp3"></audio>
-        <audio id="C#4" src="assets\pianoSounds\C-4.mp3"></audio>
-        <audio id="D4" src="assets\pianoSounds\D4.mp3"></audio>
-        <audio id="D#4" src="assets\pianoSounds\D-4.mp3"></audio>
-        <audio id="E4" src="assets\pianoSounds\E4.mp3"></audio>
-        <audio id="F4" src="assets\pianoSounds\F4.mp3"></audio>
-        <audio id="F#4" src="assets\pianoSounds\F-4.mp3"></audio>
-        <audio id="G4" src="assets\pianoSounds\G4.mp3"></audio>
-        <audio id="G#4" src="assets\pianoSounds\G-4.mp3"></audio>
-        <audio id="A4" src="assets\pianoSounds\A4.mp3"></audio>
-        <audio id="A#4" src="assets\pianoSounds\A-4.mp3"></audio>
-        <audio id="B4" src="assets\pianoSounds\B4.mp3"></audio>
-        <!-- 5 -->
-        <audio id="C5" src="assets\pianoSounds\C5.mp3"></audio>
-        <audio id="C#5" src="assets\pianoSounds\C-5.mp3"></audio>
-        <audio id="D5" src="assets\pianoSounds\D5.mp3"></audio>
-        <audio id="D#5" src="assets\pianoSounds\D-5.mp3"></audio>
-        <audio id="E5" src="assets\pianoSounds\E5.mp3"></audio>
-        <audio id="F5" src="assets\pianoSounds\F5.mp3"></audio>
-        <audio id="F#5" src="assets\pianoSounds\F-5.mp3"></audio>
-        <audio id="G5" src="assets\pianoSounds\G5.mp3"></audio>
-        <audio id="G#5" src="assets\pianoSounds\G-5.mp3"></audio>
-        <audio id="A5" src="assets\pianoSounds\A5.mp3"></audio>
-        <audio id="A#5" src="assets\pianoSounds\A-5.mp3"></audio>
-        <audio id="B5" src="assets\pianoSounds\B5.mp3"></audio>
-        <!-- 6 -->
-        <audio id="C6" src="assets\pianoSounds\C6.mp3"></audio>
-        <audio id="C#6" src="assets\pianoSounds\C-6.mp3"></audio>
-        <audio id="D6" src="assets\pianoSounds\D6.mp3"></audio>
-        <audio id="D#6" src="assets\pianoSounds\D-6.mp3"></audio>
-        <audio id="E6" src="assets\pianoSounds\E6.mp3"></audio>
-        <audio id="F6" src="assets\pianoSounds\F6.mp3"></audio>
-        <audio id="F#6" src="assets\pianoSounds\F-6.mp3"></audio>
-        <audio id="G6" src="assets\pianoSounds\G6.mp3"></audio>
-        <audio id="G#6" src="assets\pianoSounds\G-6.mp3"></audio>
-        <audio id="A6" src="assets\pianoSounds\A6.mp3"></audio>
-        <audio id="A#6" src="assets\pianoSounds\A-6.mp3"></audio>
-        <audio id="B6" src="assets\pianoSounds\B6.mp3"></audio>
-        <!-- 7 -->
-        <audio id="C7" src="assets\pianoSounds\C7.mp3"></audio>
-        <audio id="C#7" src="assets\pianoSounds\C-7.mp3"></audio>
-        <audio id="D7" src="assets\pianoSounds\D7.mp3"></audio>
-        <audio id="D#7" src="assets\pianoSounds\D-7.mp3"></audio>
-        <audio id="E7" src="assets\pianoSounds\E7.mp3"></audio>
-        <audio id="F7" src="assets\pianoSounds\F7.mp3"></audio>
-        <audio id="F#7" src="assets\pianoSounds\F-7.mp3"></audio>
-        <audio id="G7" src="assets\pianoSounds\G7.mp3"></audio>
-        <audio id="G#7" src="assets\pianoSounds\G-7.mp3"></audio>
-        <audio id="A7" src="assets\pianoSounds\A7.mp3"></audio>
-        <audio id="A#7" src="assets\pianoSounds\A-7.mp3"></audio>
-        <audio id="B7" src="assets\pianoSounds\B7.mp3"></audio>
-        <audio id="C8" src="assets\pianoSounds\C8.mp3"></audio>
     </body>
 </html>
