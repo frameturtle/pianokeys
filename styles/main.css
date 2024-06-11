@@ -35,8 +35,10 @@ p {
     background-color: white;
     display:flex;
     flex-direction: column;
+    justify-content: space-around;
     flex-basis: 70vw;
     flex-basis: 80vh;
+    min-width: 40vw;
     margin: 2%;
     /* padding-right: 10%; */
 }
@@ -49,7 +51,15 @@ p {
     align-items: center;
 }
 
+.heading.playing {
+    display: none;
+}
+
 .card {
+    display: none;
+}
+
+.card.playing {
     display: grid;
     place-items: center;
     grid-template-areas: "inner-div";
@@ -63,25 +73,34 @@ p {
     grid-area: inner-div;
 }
 
+form {
+    margin-bottom: 10%;
+}
+
+form.playing {
+    display: none;
+}
+
 #beginButton {
     width: 15%;
     cursor: pointer;
     align-items: center;
-    justify-content: center;
     background-color: #3483eb;
     align-self: center;
-    margin-top: -10%;
+
     color: white;
+    font-size:larger;
+    min-height: 5vh;
+    border: none;
 }
 
 .button {
-    cursor: pointer;
     color: white;
     text-align: center;
+
 }
 
 #begin {
-    cursor: pointer;
     color: white;
     text-align: center;
 }

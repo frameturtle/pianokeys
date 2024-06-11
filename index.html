@@ -16,11 +16,45 @@
                 <p>Look at the note and press the coresponding key on the piano. Middle C is highlighted in blue.</p>
             </div>
             <div class="card">
-                <img src="assets\trebleClef.svg" alt="treble clef" id="base">
+                <img src="assets\emptyStaff.svg" alt="empty staff" id="base">
             </div>
-            <div id="beginButton">
-                <h2 class="button" id="begin">Begin</h2>
-            </div>          
+            <form>
+                <fieldset>
+                  <legend>Clefs</legend>
+                  <p>
+                    <input type="radio" name="clef" id="clef_1" value="treble" checked />
+                    <label for="clef_1">Treble</label>
+                  </p>
+                  <p>
+                    <input type="radio" name="clef" id="clef_2" value="bass" />
+                    <label for="clef_2">Bass</label>
+                  </p>
+                  <p>
+                    <input type="radio" name="clef" id="clef_3" value="both" />
+                    <label for="clef_3">Both</label>
+                  </p>
+                </fieldset>
+                <fieldset>
+                    <legend>Difficulty</legend>
+                    <p>
+                      <input type="radio" name="difficulty" id="difficulty_1" value="easy" checked />
+                      <label for="difficulty_1">Easy</label>
+                    </p>
+                    <p>
+                      <input type="radio" name="difficulty" id="difficulty_2" value="medium" />
+                      <label for="difficulty_2">Medium</label>
+                    </p>
+                    <p>
+                      <input type="radio" name="difficulty" id="difficulty_3" value="hard" />
+                      <label for="difficulty_3">Hard</label>
+                    </p>
+                  </fieldset>
+                  <section class="button">
+                    <p id="begin">
+                      <button type="submit" id="beginButton">Begin</button>
+                    </p>
+                  </section>
+              </form>
         </div>  
         <div class="piano">
             <!-- 1 -->
