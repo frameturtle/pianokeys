@@ -37,7 +37,7 @@ p {
     flex-direction: column;
     justify-content: space-around;
     flex-basis: 70vw;
-    flex-basis: 80vh;
+    flex-basis: 75vh;
     min-width: 40vw;
     margin: 2%;
     /* padding-right: 10%; */

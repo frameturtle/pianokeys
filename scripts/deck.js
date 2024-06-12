@@ -35,15 +35,75 @@ const CLEF_VALUE_MAP = {
     "bass" : "BASS",
 }
 
-const CARD_DIFFICULTY_MAP = {
-    "TREBLEC4" : 1,
-    "TREBLEC-4" : 1,
+const DIFFICULTY_VALUE_MAP = {
+    "easy" : 1,
+    "medium" : 2,
+    "hard" : 3
+}
 
+const CARD_DIFFICULTY_MAP = {
+// difficulty level 1
+    "BASSF2" : 1,
+    "BASSG2" : 1,
+    "BASSA2" : 1,
+    "BASSB2" : 1,
+    "BASSC3" : 1,
+    "BASSD3" : 1, 
+    "BASSE3" : 1,
+    "BASSF3" : 1,
+    "BASSG3" : 1,
+    "BASSA3" : 1,
+    "BASSB3" : 1,
+    "BASSC4" : 1,
+
+    "TREBLEC4" : 1,
+    "TREBLED4" : 1,
+    "TREBLEE4" : 1,
+    "TREBLEF4" : 1,
+    "TREBLEG4" : 1,
+    "TREBLEA4" : 1,
+    "TREBLEB4" : 1,
+    "TREBLEC5" : 1,
+    "TREBLED5" : 1,
+    "TREBLEE5" : 1,
+    "TREBLEF5" : 1,
+    "TREBLEG5" : 1,
+// difficulty level 2
+    "BASSA1" : 2,
+    "BASSB1" : 2,
+    "BASSC2" : 2,
+    "BASSD2" : 2,
+    "BASSE2" : 2,
+    "BASSD4" : 2,
+    "BASSE4" : 2,
+    "BASSF4" : 2,
+    "BASSG4" : 2,
+
+    "TREBLEA5" : 2,
+    "TREBLEB5" : 2,
+    "TREBLEC6" : 2,
+    "TREBLED6" : 2,
+    "TREBLEE6" : 2,
+    "TREBLEF3" : 2,
+    "TREBLEG3" : 2,
+    "TREBLEA3" : 2,
+    "TREBLEB3" : 2,
+// difficulty level 3
+    "BASSD1" : 3,
+    "BASSE1" : 3,
+    "BASSF1" : 3,
+    "BASSG1" : 3,
+
+    "TREBLEF6" : 3,
+    "TREBLEG6" : 3,
+    "TREBLEA6" : 3,
+    "TREBLEB6" : 3
 }
 
 export default class Deck {
     constructor(clefSelection, difficultySelection) {
-        this.cards = freshDeck(clefSelection, difficultySelection);
+        const cardsDirty = freshDeck(clefSelection);
+        this.cards = difficultyComb(difficultySelection, cardsDirty);
     }
 
     get numberOfCards() {
@@ -95,7 +155,7 @@ function makeNotes() {
     return notes;
 }
 
-function freshDeck(clefSelection, difficultySelection) {
+function freshDeck(clefSelection) {
     if(clefSelection === "both") {
         return CLEFS.flatMap(clef => {
             return makeNotes().map(note => {
@@ -107,4 +167,14 @@ function freshDeck(clefSelection, difficultySelection) {
             return new Card(CLEF_VALUE_MAP[clefSelection.toString()], note)
         })
     }
+}
+
+function difficultyComb(difficultySelection, c) {
+    const cards = c;
+    for(let index = 0; index < cards.length; index++) {
+        if(CARD_DIFFICULTY_MAP[cards[index].difficulty] > DIFFICULTY_VALUE_MAP[difficultySelection.toString()]) {
+            cards.splice(index, 1);
+        }
+    }
+    return cards;
 }
