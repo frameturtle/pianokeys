@@ -68,7 +68,6 @@ const IMAGES = [
     "assets/cardImages/E4bassClef.svg",
     "assets/cardImages/F4bassClef.svg",
     "assets/cardImages/G4bassClef.svg",
-
     "assets/cardImages/F3trebleClef.svg",
     "assets/cardImages/G3trebleClef.svg",
     "assets/cardImages/A3trebleClef.svg",
@@ -167,10 +166,15 @@ const CARD_DIFFICULTY_MAP = {
     "TREBLEB6" : 3
 }
 
+let TREBLE_INDEX = 16;
+let BASS_INDEX = 24;
+
 export default class Deck {
     constructor(clefSelection, difficultySelection) {
         const cardsDirty = freshDeck(clefSelection);
+        console.log(cardsDirty);
         this.cards = difficultyComb(difficultySelection, cardsDirty);
+        console.log(this.cards);
     }
 
     get numberOfCards() {
@@ -208,16 +212,22 @@ class Card {
 }
 
 class Note {
-    constructor(img, name) {
+    constructor(img, name, clef) {
         this.img = img;
         this.name = name;
+        this.clef = clef;
     }
 }
 
 function makeNotes() {
     const notes = [];
-    for (let index = 0; index < IMAGES.length; index++) {
-        notes[index] = new Note(IMAGES[index], NAMES[index])
+    let j = BASS_INDEX + 1;
+    for (let index = 0; index <= BASS_INDEX; index++) {
+        notes[index] = new Note(IMAGES[index], NAMES[index], "BASS");
+    }
+    for(let index = TREBLE_INDEX; index < IMAGES.length-9; index++) {
+        notes[index] = new Note(IMAGES[j], NAMES[index], "TREBLE");
+        j++;
     }
     return notes;
 }
@@ -230,19 +240,40 @@ function freshDeck(clefSelection) {
             })
         })
     } else {
-        return makeNotes().map(note => {
-            return new Card(CLEF_VALUE_MAP[clefSelection.toString()], note)
+        const notes = makeNotes();
+        const cards = [];
+        let i = 0;
+        notes.forEach(note => {
+            if(note.clef.toLowerCase() != clefSelection) {
+                notes.splice(notes.indexOf(note),1);
+            } else {
+                cards[i] = new Card(note.clef, note);
+                // console.log(cards[i]);
+                i++;
+            }
         })
+        return cards;
     }
 }
 
+
 function difficultyComb(difficultySelection, c) {
-    const cards = c;
-    for(let index = 0; index < cards.length; index++) {
-        if(CARD_DIFFICULTY_MAP[cards[index].difficulty] === undefined || CARD_DIFFICULTY_MAP[cards[index].difficulty] > DIFFICULTY_VALUE_MAP[difficultySelection.toString()]) {
-            console.log("cutting");
-            cards.splice(index, 1);
+    const dirtyCards = c;
+    const cards = [];
+    let i = 0;
+    for(let index = 0; index < dirtyCards.length; index++) {
+        if(CARD_DIFFICULTY_MAP[dirtyCards[index].difficulty] === undefined || CARD_DIFFICULTY_MAP[dirtyCards[index].difficulty] > DIFFICULTY_VALUE_MAP[difficultySelection]) {
+            // console.log("cutting ",CARD_DIFFICULTY_MAP[cards[index].difficulty]);
+            // cards.splice(index, 1);
+        } else {
+            cards[i] = dirtyCards[index];
+            console.log(cards[i]);
+            i++;
         }
     }
     return cards;
 }
+
+// console.log(CARD_DIFFICULTY_MAP[cards[index].difficulty]);
+// console.log(cards[index].difficulty);
+// console.log(DIFFICULTY_VALUE_MAP[difficultySelection]);

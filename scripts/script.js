@@ -4,7 +4,6 @@ import { keys} from "./keys.js"
 // setup
 
 const noteCard = document.querySelector('.card');
-let deck
 
 const begin = document.querySelector('#begin');
 const heading = document.querySelector('.heading');
@@ -21,17 +20,22 @@ const hard = document.getElementById('difficulty_3');
 
 begin.addEventListener('click', () => startGame());
 
-keys.forEach(key => {
-    key.addEventListener('click', () => checkNote(key));
-    console.log("event listener")
-})
+// keys.forEach(key => {
+//     key.addEventListener('click', () => checkNote(key, deck));
+//     console.log("event listener")
+// })
 
 
 // game stuff
 
 function startGame() {
-    deck = new Deck(checkClef(),checkDifficulty());
-    console.log(deck.cards[0].difficulty)
+    const deck = new Deck(checkClef(),checkDifficulty());
+    console.log(deck.cards);
+    keys.forEach(key => {
+        key.addEventListener('click', () => checkNote(key, deck));
+        console.log("event listener")
+    })
+    // console.log(deck.cards[0].difficulty)
     // buttonSection.classList.add('playing');
     begin.removeChild(document.getElementById("beginButton"))
     heading.classList.add('playing');
@@ -39,13 +43,18 @@ function startGame() {
     noteCard.classList.add('playing');
     clear();
     deck.shuffle();
+    console.log(deck.cards);
     noteCard.appendChild(deck.cards[0].getHTML());
 }
 
 function checkClef() {
     if(treble.checked) {
+        noteCard.removeChild(document.getElementById("base"));
+        noteCard.appendChild(baseMaker("assets/trebleStaff.svg"));
         return "treble";
     } else if(bass.checked) {
+        noteCard.removeChild(document.getElementById("base"));
+        noteCard.appendChild(baseMaker("assets/bassStaff.svg"));
         return "bass";
     } else {
         return "both";
@@ -62,13 +71,21 @@ function checkDifficulty() {
     }
 }
 
+function baseMaker(baseSrc) {
+    const baseImage = document.createElement('img');
+    baseImage.src = baseSrc;
+    baseImage.alt = "staff";
+    baseImage.id = "base";
+    return baseImage;
+}
+
 function clear() {
     if(noteCard.childElementCount > 1) {
         noteCard.removeChild(document.getElementById("thing"));
     }
 }
 
-function checkNote(key) {
+function checkNote(key, deck) {
     if(deck.cards === undefined || deck.cards.length == 0) {
         return;
     }
