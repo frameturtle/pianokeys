@@ -1,5 +1,25 @@
 const CLEFS = ["TREBLE","BASS"]
 const NAMES = [
+    "D1",
+    "E1",
+    "F1",
+    "G1",
+    "A1",
+    "B1",
+    "C2",
+    "D2",
+    "E2",
+    "F2",
+    "G2",
+    "A2",
+    "B2",
+    "C3",
+    "D3",
+    "E3",
+    "F3",
+    "G3",
+    "A3",
+    "B3",
     "C4",
     "D4",
     "E4",
@@ -12,9 +32,47 @@ const NAMES = [
     "E5",
     "F5",
     "G5",
-    "A5"
+    "A5",
+    "B5",
+    "C6",
+    "D6",
+    "E6",
+    "F6",
+    "G6",
+    "A6",
+    "B6"
 ]
 const IMAGES = [
+    "assets/cardImages/D1bassClef.svg",
+    "assets/cardImages/E1bassClef.svg",
+    "assets/cardImages/F1bassClef.svg",
+    "assets/cardImages/G1bassClef.svg",
+    "assets/cardImages/A1bassClef.svg",
+    "assets/cardImages/B1bassClef.svg",
+    "assets/cardImages/C2bassClef.svg",
+    "assets/cardImages/D2bassClef.svg",
+    "assets/cardImages/E2bassClef.svg",
+    "assets/cardImages/F2bassClef.svg",
+    "assets/cardImages/G2bassClef.svg",
+    "assets/cardImages/A2bassClef.svg",
+    "assets/cardImages/B2bassClef.svg",
+    "assets/cardImages/C3bassClef.svg",
+    "assets/cardImages/D3bassClef.svg",
+    "assets/cardImages/E3bassClef.svg",
+    "assets/cardImages/F3bassClef.svg",
+    "assets/cardImages/G3bassClef.svg",
+    "assets/cardImages/A3bassClef.svg",
+    "assets/cardImages/B3bassClef.svg",
+    "assets/cardImages/C4bassClef.svg",
+    "assets/cardImages/D4bassClef.svg",
+    "assets/cardImages/E4bassClef.svg",
+    "assets/cardImages/F4bassClef.svg",
+    "assets/cardImages/G4bassClef.svg",
+
+    "assets/cardImages/F3trebleClef.svg",
+    "assets/cardImages/G3trebleClef.svg",
+    "assets/cardImages/A3trebleClef.svg",
+    "assets/cardImages/B3trebleClef.svg",
     "assets/cardImages/C4trebleClef.svg",
     "assets/cardImages/D4trebleClef.svg",
     "assets/cardImages/E4trebleClef.svg",
@@ -27,7 +85,16 @@ const IMAGES = [
     "assets/cardImages/E5trebleClef.svg",
     "assets/cardImages/F5trebleClef.svg",
     "assets/cardImages/G5trebleClef.svg",
-    "assets/cardImages/A5trebleClef.svg"
+    "assets/cardImages/A5trebleClef.svg",
+    "assets/cardImages/B5trebleClef.svg",
+    "assets/cardImages/C6trebleClef.svg",
+    "assets/cardImages/D6trebleClef.svg",
+    "assets/cardImages/E6trebleClef.svg",
+    "assets/cardImages/F6trebleClef.svg",
+    "assets/cardImages/G6trebleClef.svg",
+    "assets/cardImages/A6trebleClef.svg",
+    "assets/cardImages/B6trebleClef.svg"
+
 ]
 
 const CLEF_VALUE_MAP = {
@@ -172,7 +239,8 @@ function freshDeck(clefSelection) {
 function difficultyComb(difficultySelection, c) {
     const cards = c;
     for(let index = 0; index < cards.length; index++) {
-        if(CARD_DIFFICULTY_MAP[cards[index].difficulty] > DIFFICULTY_VALUE_MAP[difficultySelection.toString()]) {
+        if(CARD_DIFFICULTY_MAP[cards[index].difficulty] === undefined || CARD_DIFFICULTY_MAP[cards[index].difficulty] > DIFFICULTY_VALUE_MAP[difficultySelection.toString()]) {
+            console.log("cutting");
             cards.splice(index, 1);
         }
     }

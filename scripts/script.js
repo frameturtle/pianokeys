@@ -30,7 +30,7 @@ keys.forEach(key => {
 // game stuff
 
 function startGame() {
-    deck = new Deck("treble","easy");
+    deck = new Deck(checkClef(),checkDifficulty());
     console.log(deck.cards[0].difficulty)
     // buttonSection.classList.add('playing');
     begin.removeChild(document.getElementById("beginButton"))
@@ -42,9 +42,23 @@ function startGame() {
     noteCard.appendChild(deck.cards[0].getHTML());
 }
 
-function checkForm() {
+function checkClef() {
     if(treble.checked) {
-        
+        return "treble";
+    } else if(bass.checked) {
+        return "bass";
+    } else {
+        return "both";
+    }
+}
+
+function checkDifficulty() {
+    if(easy.checked) {
+        return "easy";
+    } else if(medium.checked) {
+        return "medium";
+    } else {
+        return "hard";
     }
 }
 
