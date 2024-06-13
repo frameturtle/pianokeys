@@ -15,7 +15,10 @@ body {
 h1, h2, p {
     color: black;
     font-family: Arial, Helvetica, sans-serif;
-    /* justify-content: left; */
+    /* margin-left: 3%; */
+}
+
+.heading>h1, .heading>h2, .heading>p {
     margin-left: 3%;
 }
 
@@ -123,7 +126,40 @@ form.playing {
     display: none;
 }
 
+input[type="radio"] {
+    /* appearance: none; */
+    -ms-transform: scale(3); /* IE 9 */
+    -webkit-transform: scale(3); /* Chrome, Safari, Opera */
+    transform: scale(3);
+}
+
+.radioChunk {
+    outline: black auto 2px; 
+    padding: 10px;
+    margin: 0;
+
+}
+
+/* label {
+    outline: black auto 2px; 
+    padding: 10px;
+} */
+
 /* start button */
+
+button {
+    color: white;
+    text-align: center;
+    background-color: #3483eb;
+    width: 20%;
+    cursor: pointer;
+    font-size:larger;
+}
+
+button:hover {
+    background-color: #2d73cf;
+}
+
 
 #beginButton {
     width: 20%;
@@ -187,14 +223,34 @@ form.playing {
 }
 
 #answerText.correct {
-    background-color: green;
+    background-color: #3483eb;
 }
 
 #answerText.incorrect {
-    background-color: red;
+    color: black;
+    background-color: #fddb44;
 }
 
 /* results screen  */
+
+#again {
+    display: flex;
+    height: 20%;
+    justify-content: space-around;
+    flex-direction: column;
+    align-self: center;
+}
+
+#again>h2 {
+    margin: 0px;
+}
+
+#againButton {
+    align-self: center;
+    width: 80%;
+    font-size: 2em;
+    height: 100px;
+}
 
 /* piano keys */
 
@@ -238,4 +294,16 @@ form.playing {
 
 #middle.white.active {
     background-color: #2d73cf;
+}
+
+#middle.white.correctKey {
+    background-color: #fddb44;
+}
+
+.white.correctKey {
+    background-color: #fddb44;
+}
+
+.black.correctKey {
+    background-color: #fddb44;
 }

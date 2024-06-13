@@ -25,12 +25,6 @@ begin.addEventListener('click', () => startGame());
 let incorrect = 0;
 let correct = 0;
 
-// keys.forEach(key => {
-//     key.addEventListener('click', () => checkNote(key, deck));
-//     console.log("event listener")
-// })
-
-
 // game stuff
 
 // basic game setup - deck creation, setting displays to none
@@ -39,13 +33,9 @@ function startGame() {
     incorrect = 0;
     correct = 0;
     const deck = new Deck(checkClef(),checkDifficulty());
-    console.log(deck.cards);
     keys.forEach(key => {
         key.addEventListener('click', () => checkNote(key, deck));
-        console.log("event listener")
     })
-    // console.log(deck.cards[0].difficulty)
-    // buttonSection.classList.add('playing');
     begin.removeChild(document.getElementById("beginButton"))
     heading.classList.add('playing');
     form.classList.add('playing');
@@ -53,7 +43,7 @@ function startGame() {
     noteCard.classList.add('playing');
     clear();
     deck.shuffle();
-    console.log(deck.cards);
+    // console.log(deck.cards);
     noteCard.appendChild(deck.cards[0].getHTML());
 }
 
@@ -105,32 +95,25 @@ function clear() {
 
 function checkNote(key, deck) {
     if(deck.cards === undefined || deck.cards.length == 0) {
-        console.log(correct, incorrect);
         return;
     }
     const thingy = document.getElementById(key.dataset.sound);
     if(deck.cards[0].note.name === thingy.id) {
         correct++;
         answer.appendChild(answerMaker(true, deck.cards[0].note.name));
+        nextCard(true, deck);
     } else {
         incorrect++;
+        let correctKey
+        keys.forEach(key => {
+            if(document.getElementById(key.dataset.sound).id === deck.cards[0].note.name) {
+                correctKey = key;
+                correctKey.classList.add('correctKey');
+            }
+        })
         answer.appendChild(answerMaker(false, deck.cards[0].note.name));
+        nextCard(false, deck);
     }
-    setTimeout(() => {
-        answer.removeChild(document.querySelector("#answerText"))
-        noteCard.removeChild(document.getElementById("thing"));
-        deck.pop();
-        if(deck.cards === undefined || deck.cards.length == 0) {
-            console.log('checked')
-            noteCard.removeChild(document.getElementById("base"));
-            noteCard.classList.remove('playing');
-            answer.classList.add('end');
-            main.classList.add('end');
-            main.appendChild(playAgain());
-        } else {
-            noteCard.appendChild(deck.cards[0].getHTML());  
-        } 
-    }, 750);
 }
 
 // creates answer response
@@ -150,16 +133,43 @@ function answerMaker(isCorrect, name) {
     return answerDiv;
 }
 
+// moves to next card
 
+function nextCard(isCorrect, deck) {
+    setTimeout(() => {
+        if(!isCorrect) {
+            let correctKey = document.querySelector('.correctKey');
+            correctKey.classList.remove('correctKey');
+        }
+        answer.removeChild(document.querySelector("#answerText"))
+        noteCard.removeChild(document.getElementById("thing"));
+        deck.pop();
+        if(deck.cards === undefined || deck.cards.length == 0) {
+            noteCard.removeChild(document.getElementById("base"));
+            noteCard.classList.remove('playing');
+            answer.classList.add('end');
+            main.classList.add('end');
+            main.appendChild(playAgain());
+        } else {
+            noteCard.appendChild(deck.cards[0].getHTML());  
+        } 
+    }, 750);
+}
+
+
+
+// creates result screen
 
 function playAgain() {
     const againDiv = document.createElement('div');
+    againDiv.id = 'again';
     const correctText = document.createElement('h2');
     correctText.textContent = "Correct: " + correct;
     const incorrectText = document.createElement('h2');
     incorrectText.textContent = "Incorrect: " + incorrect;
     const againButton = document.createElement('button');
     againButton.textContent = "Play Again?";
+    againButton.id = 'againButton';
     againButton.addEventListener('click', () => location.reload());
     againDiv.appendChild(correctText);
     againDiv.appendChild(incorrectText);
