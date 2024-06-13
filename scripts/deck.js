@@ -166,14 +166,14 @@ const CARD_DIFFICULTY_MAP = {
     "TREBLEB6" : 3
 }
 
-let TREBLE_INDEX = 16;
+let TREBLE_INDEX = 25;
 let BASS_INDEX = 24;
 
 export default class Deck {
     constructor(clefSelection, difficultySelection) {
         const cardsDirty = freshDeck(clefSelection);
         this.cards = difficultyComb(difficultySelection, cardsDirty);
-        console.log(this.cards);
+        // console.log(this.cards);
     }
 
     get numberOfCards() {
@@ -223,11 +223,15 @@ function makeNotes() {
     let j = BASS_INDEX + 1;
     for (let index = 0; index <= BASS_INDEX; index++) {
         notes[index] = new Note(IMAGES[index], NAMES[index], "BASS");
+        console.log(notes[index].name);
     }
-    for(let index = TREBLE_INDEX; index < IMAGES.length-9; index++) {
-        notes[index] = new Note(IMAGES[j], NAMES[index], "TREBLE");
+    let i = 16;
+    for(let index = TREBLE_INDEX; index < IMAGES.length; index++) {
+        notes[index] = new Note(IMAGES[j], NAMES[i], "TREBLE");
+        i++;
         j++;
     }
+    console.log(notes.length);
     return notes;
 }
 
@@ -241,23 +245,44 @@ function freshDeck(clefSelection) {
                 cards[i] = new Card(note.clef, note);
                 i++;
             } else {
-                notes.splice(notes.indexOf(note),1);
+                // notes.splice(notes.indexOf(note),1);
             }
         })
         return cards;
 
     } else {
         const notes = makeNotes();
+        console.log(notes);
         const cards = [];
-        let i = 0;
-        notes.forEach(note => {
-            if(note.clef.toLowerCase() != clefSelection) {
-                notes.splice(notes.indexOf(note),1);
-            } else {
-                cards[i] = new Card(note.clef, note);
-                i++;
+        let j = 0;
+        for(let i = 0; i < notes.length; i++) {
+            if(notes[i].clef.toLowerCase() === clefSelection) {
+                cards[j] = new Card(notes[i].clef, notes[i]);
+                console.log(cards[j].note);
+                j++;
             }
-        })
+        }
+        console.log(cards);
+        return cards;
+        // console.log(notes);
+        // console.log(notes.length);
+        // let counter = 0
+        // let bcounter = 0
+        // const cards = [];
+        // let i = 0;
+        // notes.forEach(note => {
+        //     counter++
+        //     if(note.clef.toLowerCase() != clefSelection) {
+        //         // notes.splice(notes.indexOf(note),1);
+        //     } else {
+        //         cards[i] = new Card(note.clef, note);
+        //         console.log(cards[i].note.name);
+        //         bcounter++;
+        //         i++;
+        //     }
+        // })
+        // console.log(counter, bcounter);
+        // console.log(cards);
         return cards;
     }
 }
