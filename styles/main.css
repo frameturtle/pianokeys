@@ -35,12 +35,20 @@ p {
     background-color: white;
     display:flex;
     flex-direction: column;
-    justify-content: space-around;
+    /* justify-content: space-around; */
     flex-basis: 60vw;
     flex-basis: 75vh;
     min-width: 40vw;
     margin: 2%;
     /* padding-right: 10%; */
+}
+
+.main.playing {
+    justify-content: space-between;
+}
+
+.main.end {
+    justify-content: space-around;
 }
 
 .main#beginButton {
@@ -55,6 +63,8 @@ p {
     display: none;
 }
 
+/* note card */
+
 .card {
     display: none;
 }
@@ -67,27 +77,60 @@ p {
 
 #thing {
     grid-area: inner-div;
+    width: 70%;
 }
 
 #base {
     grid-area: inner-div;
+    width: 70%;
+}
+
+/* form */
+
+legend {
+    font-size: 3em;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+
+#clefs {
+    grid-area: "a";
+}
+
+#difficulties {
+    grid-area: "b"
+}
+
+fieldset {
+    border: 0px;
+    display: flex;
+    justify-content: center;
 }
 
 form {
-    margin-bottom: 10%;
+    padding-top: 10%;
+    border: none;
+    align-self: center;
+    width: 50%;
+    display: grid;
+    grid-template:
+    "a"
+    "b"
+    "c";
 }
 
 form.playing {
     display: none;
 }
 
+/* start button */
+
 #beginButton {
-    width: 15%;
+    width: 20%;
     cursor: pointer;
     align-items: center;
     background-color: #3483eb;
     align-self: center;
-
     color: white;
     font-size:larger;
     min-height: 5vh;
@@ -97,7 +140,7 @@ form.playing {
 .button {
     color: white;
     text-align: center;
-
+    grid-area: "c";
 }
 
 #begin {
@@ -108,6 +151,52 @@ form.playing {
 #beginButton:hover {
     background-color: #2d73cf;
 }
+
+/* answer checker */
+
+#answer {
+    width: 100%;
+    height: 5%;
+    align-self: center;
+    /* display: grid; */
+    display: flex;
+    justify-content: center;
+    place-items: center;
+    grid-template-areas: "inner-div";
+}
+
+#answer.end {
+    display: none;
+}
+
+#placeholder {
+    width: 100%;
+    display: none;
+    grid-area: inner-div;
+}
+
+#answerText {
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    font-size: 3em;
+    line-height: 200%;
+    font-weight: 500;
+    grid-area: inner-div;
+    width: 100%;
+}
+
+#answerText.correct {
+    background-color: green;
+}
+
+#answerText.incorrect {
+    background-color: red;
+}
+
+/* results screen  */
+
+/* piano keys */
 
 .piano {
     display: flex;

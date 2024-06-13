@@ -9,6 +9,8 @@ const begin = document.querySelector('#begin');
 const heading = document.querySelector('.heading');
 const form = document.querySelector('form');
 const buttonSection = document.getElementsByClassName('button');
+const answer = document.getElementById('answer');
+const main = document.querySelector('.main');
 
 const treble = document.getElementById('clef_1');
 const bass = document.getElementById('clef_2');
@@ -20,6 +22,9 @@ const hard = document.getElementById('difficulty_3');
 
 begin.addEventListener('click', () => startGame());
 
+let incorrect = 0;
+let correct = 0;
+
 // keys.forEach(key => {
 //     key.addEventListener('click', () => checkNote(key, deck));
 //     console.log("event listener")
@@ -28,7 +33,11 @@ begin.addEventListener('click', () => startGame());
 
 // game stuff
 
+// basic game setup - deck creation, setting displays to none
+
 function startGame() {
+    incorrect = 0;
+    correct = 0;
     const deck = new Deck(checkClef(),checkDifficulty());
     console.log(deck.cards);
     keys.forEach(key => {
@@ -40,12 +49,15 @@ function startGame() {
     begin.removeChild(document.getElementById("beginButton"))
     heading.classList.add('playing');
     form.classList.add('playing');
+    main.classList.add('playing');
     noteCard.classList.add('playing');
     clear();
     deck.shuffle();
     console.log(deck.cards);
     noteCard.appendChild(deck.cards[0].getHTML());
 }
+
+// checks form selections for deck creation
 
 function checkClef() {
     if(treble.checked) {
@@ -71,6 +83,8 @@ function checkDifficulty() {
     }
 }
 
+// creates base staff image depending on the chosen cleff
+
 function baseMaker(baseSrc) {
     const baseImage = document.createElement('img');
     baseImage.src = baseSrc;
@@ -79,35 +93,76 @@ function baseMaker(baseSrc) {
     return baseImage;
 }
 
+// this doesn't really do anything anymore but I might need it in the future
+
 function clear() {
     if(noteCard.childElementCount > 1) {
         noteCard.removeChild(document.getElementById("thing"));
     }
 }
 
+// checks if the key pressed matches the displayed note
+
 function checkNote(key, deck) {
     if(deck.cards === undefined || deck.cards.length == 0) {
+        console.log(correct, incorrect);
         return;
     }
     const thingy = document.getElementById(key.dataset.sound);
     if(deck.cards[0].note.name === thingy.id) {
+        correct++;
+        answer.appendChild(answerMaker(true, deck.cards[0].note.name));
     } else {
+        incorrect++;
+        answer.appendChild(answerMaker(false, deck.cards[0].note.name));
     }
-    noteCard.removeChild(document.getElementById("thing"));
-    deck.pop();
-    if(deck.cards === undefined || deck.cards.length == 0) {
-        begin.appendChild(playAgain());
+    setTimeout(() => {
+        answer.removeChild(document.querySelector("#answerText"))
+        noteCard.removeChild(document.getElementById("thing"));
+        deck.pop();
+        if(deck.cards === undefined || deck.cards.length == 0) {
+            console.log('checked')
+            noteCard.removeChild(document.getElementById("base"));
+            noteCard.classList.remove('playing');
+            answer.classList.add('end');
+            main.classList.add('end');
+            main.appendChild(playAgain());
+        } else {
+            noteCard.appendChild(deck.cards[0].getHTML());  
+        } 
+    }, 750);
+}
+
+// creates answer response
+
+function answerMaker(isCorrect, name) {
+    const answerDiv = document.createElement('h3');
+    answerDiv.id = ('answerText');
+    answer.classList.add('display');
+    if(isCorrect) {
+        answerDiv.textContent = "✔\t" + name;
+        answerDiv.classList.add('correct');
     } else {
-        noteCard.appendChild(deck.cards[0].getHTML());  
-    } 
+
+        answerDiv.textContent = "X\t" + name;
+        answerDiv.classList.add('incorrect');
+    }
+    return answerDiv;
 }
 
 
 
 function playAgain() {
-    const againDiv = document.createElement('button');
-    againDiv.textContent = "Play Again?";
-    againDiv.id = "beginButton";
-    againDiv.class = "button";
+    const againDiv = document.createElement('div');
+    const correctText = document.createElement('h2');
+    correctText.textContent = "Correct: " + correct;
+    const incorrectText = document.createElement('h2');
+    incorrectText.textContent = "Incorrect: " + incorrect;
+    const againButton = document.createElement('button');
+    againButton.textContent = "Play Again?";
+    againButton.addEventListener('click', () => location.reload());
+    againDiv.appendChild(correctText);
+    againDiv.appendChild(incorrectText);
+    againDiv.appendChild(againButton);
     return againDiv;
 }
