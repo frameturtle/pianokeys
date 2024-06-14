@@ -156,6 +156,7 @@ button {
     width: 20%;
     cursor: pointer;
     font-size:larger;
+    border: none;
 }
 
 button:hover {
@@ -255,6 +256,8 @@ button:hover {
 }
 
 /* piano keys */
+
+/* these media queries don't seem to really be working but I think it is an improvement anyway */
 
 @media (width <= 1250px) and (orientation: landscape) {
 
