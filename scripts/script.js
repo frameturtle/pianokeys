@@ -24,6 +24,7 @@ begin.addEventListener('click', () => startGame());
 
 let incorrect = 0;
 let correct = 0;
+let timeoutLength = 750;
 
 // game stuff
 
@@ -36,7 +37,7 @@ function startGame() {
     keys.forEach(key => {
         key.addEventListener('click', () => checkNote(key, deck));
     })
-    begin.removeChild(document.getElementById("beginButton"))
+    begin.removeChild(document.getElementById('beginButton'))
     heading.classList.add('playing');
     form.classList.add('playing');
     main.classList.add('playing');
@@ -51,35 +52,35 @@ function startGame() {
 
 function checkClef() {
     if(treble.checked) {
-        noteCard.removeChild(document.getElementById("base"));
-        noteCard.appendChild(baseMaker("assets/trebleStaff.svg"));
-        return "treble";
+        noteCard.removeChild(document.getElementById('base'));
+        noteCard.appendChild(baseMaker('assets/trebleStaff.svg'));
+        return 'treble';
     } else if(bass.checked) {
-        noteCard.removeChild(document.getElementById("base"));
-        noteCard.appendChild(baseMaker("assets/bassStaff.svg"));
-        return "bass";
+        noteCard.removeChild(document.getElementById('base'));
+        noteCard.appendChild(baseMaker('assets/bassStaff.svg'));
+        return 'bass';
     } else {
-        return "both";
+        return 'both';
     }
 }
 
 function checkDifficulty() {
     if(easy.checked) {
-        return "easy";
+        return 'easy';
     } else if(medium.checked) {
-        return "medium";
+        return 'medium';
     } else {
-        return "hard";
+        return 'hard';
     }
 }
 
-// creates base staff image depending on the chosen cleff
+// creates base staff image depending on the chosen cleff (to prevent 'flickering' effect between cards)
 
 function baseMaker(baseSrc) {
     const baseImage = document.createElement('img');
     baseImage.src = baseSrc;
-    baseImage.alt = "staff";
-    baseImage.id = "base";
+    baseImage.alt = 'staff';
+    baseImage.id = 'base';
     return baseImage;
 }
 
@@ -87,7 +88,7 @@ function baseMaker(baseSrc) {
 
 function clear() {
     if(noteCard.childElementCount > 1) {
-        noteCard.removeChild(document.getElementById("thing"));
+        noteCard.removeChild(document.getElementById('thing'));
     }
 }
 
@@ -96,7 +97,10 @@ function clear() {
 function checkNote(key, deck) {
     if(deck.cards === undefined || deck.cards.length == 0) {
         return;
+    } else if(answer.classList.contains('checking')) {
+        return; // hopefully prevents issues caused by rapid key pressing
     }
+    answer.classList.add('checking')
     const thingy = document.getElementById(key.dataset.sound);
     if(deck.cards[0].note.name === thingy.id) {
         correct++;
@@ -141,11 +145,12 @@ function nextCard(isCorrect, deck) {
             let correctKey = document.querySelector('.correctKey');
             correctKey.classList.remove('correctKey');
         }
-        answer.removeChild(document.querySelector("#answerText"))
-        noteCard.removeChild(document.getElementById("thing"));
+        answer.classList.remove('checking');
+        answer.removeChild(document.querySelector('#answerText'));
+        noteCard.removeChild(document.getElementById('thing'));
         deck.pop();
         if(deck.cards === undefined || deck.cards.length == 0) {
-            noteCard.removeChild(document.getElementById("base"));
+            noteCard.removeChild(document.getElementById('base'));
             noteCard.classList.remove('playing');
             answer.classList.add('end');
             main.classList.add('end');
@@ -153,7 +158,7 @@ function nextCard(isCorrect, deck) {
         } else {
             noteCard.appendChild(deck.cards[0].getHTML());  
         } 
-    }, 750);
+    }, timeoutLength);
 }
 
 
@@ -164,11 +169,11 @@ function playAgain() {
     const againDiv = document.createElement('div');
     againDiv.id = 'again';
     const correctText = document.createElement('h2');
-    correctText.textContent = "Correct: " + correct;
+    correctText.textContent = 'Correct: ' + correct;
     const incorrectText = document.createElement('h2');
-    incorrectText.textContent = "Incorrect: " + incorrect;
+    incorrectText.textContent = 'incorrect: ' + incorrect;
     const againButton = document.createElement('button');
-    againButton.textContent = "Play Again?";
+    againButton.textContent = 'Play Again?';
     againButton.id = 'againButton';
     againButton.addEventListener('click', () => location.reload());
     againDiv.appendChild(correctText);

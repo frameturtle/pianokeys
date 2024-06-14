@@ -7,8 +7,8 @@ KNOWN ISSUES:
 
 - Overall code sloppiness (it has no business being so terrible)
 - Maybe the least adaptable web page ever, it currently only looks good on my monitor
-- Pressing another key before the previous answer disappears causes one answer to always display on screen (I need to disable the keyboard during the wait between cards)
 - Radio styling looks pretty rough but I am too lazy to completely rework it
+- Answer display alignment is a bit wonky
 
 THINGS I USED:
 
