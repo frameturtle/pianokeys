@@ -256,19 +256,70 @@ button:hover {
 
 /* piano keys */
 
+@media (width <= 1250px) and (orientation: landscape) {
+
+    .key {
+        height: calc(var(--width) * 2);
+        width: calc(var(--width)* 0.5);
+        margin: 0;
+    }
+
+    .black {
+        --width: 6px;
+        margin-right: calc(var(--width)/-2);
+        margin-left: calc(var(--width)/-2);
+    }
+
+    .piano {
+        width: 50%;
+    }
+
+    .white {
+        --width: 10px;
+        background-color: white;
+        outline: 3px solid #333;
+    }
+}
+
+@media (width > 1250px) and (orientation: landscape) {
+
+    .key {
+        height: calc(var(--width) * 8);
+        width: calc(var(--width)* 2);
+    }
+
+    .black {
+        --width: 22.5px;
+        margin-right: calc(var(--width)/-1);
+        margin-left: calc(var(--width)/-1);
+    }
+
+    .piano {
+        width: 90%;
+    }
+
+    .white {
+        --width: 37.5px;
+        background-color: white;
+        outline: 3px solid #333;
+    }
+
+}
+
 .piano {
     display: flex;
-    width: 90%;
+    /* width: 90%; */
     cursor: pointer;
 }
 
-.key {
+
+/* .key {
     height: calc(var(--width) * 8);
     width: calc(var(--width)* 2);
-}
+} */
 
 .white {
-    --width: 37.5px;
+    /* --width: 37.5px; */
     background-color: white;
     outline: 3px solid #333;
 }
@@ -278,11 +329,10 @@ button:hover {
 }
 
 .black {
-    --width: 22.5px;
-    height: 180px;
+    /* --width: 22.5px; */
     background-color: #1c1c1c;
-    margin-right: calc(var(--width)/-1);
-    margin-left: calc(var(--width)/-1);
+    /* margin-right: calc(var(--width)/-1);
+    margin-left: calc(var(--width)/-1); */
     z-index: 2;
 }
 

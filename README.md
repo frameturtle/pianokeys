@@ -6,7 +6,8 @@ The other goal of this project was for me to learn some javascript and to refami
 KNOWN ISSUES:
 
 - Overall code sloppiness (it has no business being so terrible)
-- Maybe the least adaptable web page ever, it currently only looks good on my monitor
+- Not mobile friendly, like at all
+- The keyboard probably looks weird on most monitors
 - Radio styling looks pretty rough but I am too lazy to completely rework it
 - Answer display alignment is a bit wonky
 
