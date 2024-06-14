@@ -25,12 +25,15 @@ begin.addEventListener('click', () => startGame());
 let incorrect = 0;
 let correct = 0;
 let timeoutLength = 750;
+let startTime = 0;
+let endTime = 0;
 
 // game stuff
 
 // basic game setup - deck creation, setting displays to none
 
 function startGame() {
+    startTime = performance.now();
     incorrect = 0;
     correct = 0;
     const deck = new Deck(checkClef(),checkDifficulty());
@@ -130,7 +133,6 @@ function answerMaker(isCorrect, name) {
         answerDiv.textContent = "✔\t" + name;
         answerDiv.classList.add('correct');
     } else {
-
         answerDiv.textContent = "X\t" + name;
         answerDiv.classList.add('incorrect');
     }
@@ -171,13 +173,18 @@ function playAgain() {
     const correctText = document.createElement('h2');
     correctText.textContent = 'Correct: ' + correct;
     const incorrectText = document.createElement('h2');
-    incorrectText.textContent = 'incorrect: ' + incorrect;
+    incorrectText.textContent = 'Incorrect: ' + incorrect;
+    const timeTaken = document.createElement('h2');
+    endTime = performance.now();
+    let totalTime = (endTime - startTime) / 1000;
+    timeTaken.textContent = "Time: " + (Math.round(totalTime*10)/10).toString() + "s";
     const againButton = document.createElement('button');
     againButton.textContent = 'Play Again?';
     againButton.id = 'againButton';
     againButton.addEventListener('click', () => location.reload());
     againDiv.appendChild(correctText);
     againDiv.appendChild(incorrectText);
+    againDiv.appendChild(timeTaken);
     againDiv.appendChild(againButton);
     return againDiv;
 }
